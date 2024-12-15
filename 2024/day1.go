@@ -16,13 +16,20 @@ func main() {
 	
 	slices.Sort(left)	
 	slices.Sort(right)
-	
-	total_distance := 0
-	for i:=0; i < len(left); i++ {
-		distance := math.Abs(float64(left[i])-float64(right[i]))
-		total_distance += int(distance)
+	occurrenceMap := make(map[int]int)
+	for _, num := range right {
+		occurrenceMap[num] = occurrenceMap[num] + 1
 	}
-	fmt.Println(total_distance)
+	
+	similarityScore := 0
+	totalDistance := 0
+	for i:=0; i < len(left); i++ {
+		similarityScore += left[i] * occurrenceMap[left[i]]
+		distance := math.Abs(float64(left[i])-float64(right[i]))
+		totalDistance += int(distance)
+	}
+	fmt.Println("Total distance: ", totalDistance)
+	fmt.Println("Similarity score: ", similarityScore)
 }
 
 func read_input() ([]int, []int) {

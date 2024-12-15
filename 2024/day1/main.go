@@ -33,7 +33,7 @@ func main() {
 }
 
 func read_input() ([]int, []int) {
-	input_data, err := os.Open("day1_input.txt")
+	input_data, err := os.Open("input.txt")
 	check(err)
 	fileScanner := bufio.NewScanner(input_data)
 	fileScanner.Split(bufio.ScanLines)
